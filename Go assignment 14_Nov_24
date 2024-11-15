@@ -1,0 +1,32 @@
+package main
+
+import "fmt"
+
+// double function
+func double(y float32) float32 {
+	return 2 * y
+}
+
+// greet function
+func greet(str string) string {
+	return "Hello " + str
+}
+
+const Pi = 3.14
+
+// perimeter of circle
+func Circle(radius int) float32 {
+	r := float32(radius)
+	return 2 * Pi * r
+}
+
+// perimeter of square
+func Square(a float32) float32 {
+	return 4 * a
+}
+func main() {
+	fmt.Println(double(10))
+	fmt.Println(greet("Vaibhav"))
+	fmt.Println(Circle(5))
+	fmt.Println(Square(32.7))
+	
