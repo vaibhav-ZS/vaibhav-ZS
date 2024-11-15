@@ -1,0 +1,119 @@
+package main
+
+import (
+	"fmt"
+)
+
+type vechile struct {
+	Type     string
+	model_no int
+}
+
+type bank_account struct {
+	name   string
+	acc_no int
+}
+type acc_list struct {
+	accounts []bank_account
+}
+
+func (a *acc_list) add(vi bank_account) {
+	a.accounts = append(a.accounts, vi)
+}
+func (a *acc_list) display() {
+	i := 0
+	for i < len(a.accounts) {
+		fmt.Printf("Name:  %s", a.accounts[i].name)
+		fmt.Printf("     ")
+		fmt.Printf("Account Number:  %d", a.accounts[i].acc_no)
+		i += 1
+		fmt.Println()
+	}
+}
+
+func if_elseif(a int) {
+	if a < 9 {
+		fmt.Println("abc")
+	} else if a == 9 {
+		fmt.Println("def")
+	} else {
+		fmt.Println("ghi")
+	}
+}
+func (a *vechile) vechile_type() {
+	if a.Type == "truck" {
+		fmt.Println("Truck")
+	} else if a.Type == "Bike" {
+		fmt.Println("Bike")
+	} else {
+		fmt.Println("Car")
+	}
+}
+func is_even(n int) bool {
+	return (n & 1) == 1
+}
+func calculator(a float64, b float64, op string) float64 {
+	switch op {
+	case "+":
+		{
+			return a + b
+		}
+	case "-":
+		{
+			return a - b
+		}
+	case "*":
+		{
+			return a * b
+		}
+	case "/":
+		{
+			return a / b
+		}
+	default:
+		return 0
+	}
+}
+func sum(n int) int {
+	return (n * (n + 1)) / 2
+}
+func swap(a *int, b *int) (*int, *int) {
+	return b, a
+}
+func main() {
+	// calculator
+	fmt.Println(calculator(90, 3, "*"))
+
+	// if_else
+	if_elseif(9)
+
+	// vechile
+	v := vechile{Type: "truck", model_no: 10001}
+	v.vechile_type()
+
+	// struct
+	l := acc_list{}
+	for i := 0; i < 5; i++ {
+		A := bank_account{name: string('a' + i), acc_no: i}
+		l.add(A)
+	}
+	l.display()
+
+	//sum
+	fmt.Println(sum(5))
+
+	//swap pointer
+	c1, c2 := 9, 8
+	a := &c1
+	b := &c2
+	a, b = swap(a, b)
+	fmt.Println(*a, *b)
+
+	//even
+	if is_even(8) {
+		fmt.Println("even")
+	} else {
+		fmt.Println("odd")
+	}
+
+}
