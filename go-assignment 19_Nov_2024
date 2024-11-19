@@ -1,0 +1,40 @@
+// reverse function
+func reverse(arr []int) {
+	n := len(arr)
+	for i := 0; i < n/2; i++ {
+		temp := arr[i]
+		arr[i] = arr[n-i-1]
+		arr[n-i-1] = temp
+	}
+}
+
+// count frequencies
+func str(word string) map[string]int {
+	freq := map[string]int{}
+	for _, char := range word {
+		freq[string(char)]++
+	}
+	return freq
+}
+
+// convert slice in to map
+func convert(arr []int) map[int]int {
+	mp := map[int]int{}
+	for idx, char := range arr {
+		mp[idx] = char
+	}
+	return mp
+}
+
+// sum values of keys
+func sumByvalues(m map[int][]int) map[int]int64 {
+	sum := map[int]int64{}
+	for key, val := range m {
+		var s int64
+		for _, v := range val {
+			s += int64(v)
+		}
+		sum[key] = s
+	}
+	return sum
+}
