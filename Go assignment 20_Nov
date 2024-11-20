@@ -1,0 +1,103 @@
+//stack package
+package stack
+
+type Stack struct {
+	arr []int
+}
+
+func New() Stack {
+	s := Stack{}
+	return s
+}
+func (s *Stack) Push(n int) {
+	s.arr = append(s.arr, n)
+}
+func (s *Stack) Pop() (int, bool) {
+	if len(s.arr) == 0 {
+		return -1, false
+	}
+	n := len(s.arr)
+	top := s.arr[n-1]
+	s.arr = s.arr[:n-1]
+	return top, true
+}
+
+// calculator package
+package calculator
+
+type Calculator struct {
+	memory float64
+}
+
+// without memory
+func (c Calculator) Add(a, b float64) float64 {
+	return a + b
+}
+func (c Calculator) Subtract(a, b float64) float64 {
+	return a - b
+}
+func (c Calculator) Multiply(a, b float64) float64 {
+	return a * b
+}
+func (c Calculator) Divide(a, b float64) float64 {
+	return a / b
+}
+
+// with memory
+func (c *Calculator) SetMemory(b float64) {
+	c.memory = b
+}
+func (c *Calculator) AddtoMemory(a float64) float64 {
+	return c.memory + a
+}
+func (c *Calculator) SubtractfromMemory(a float64) float64 {
+	return c.memory - a
+}
+func (c *Calculator) MultiplytoMemory(a float64) float64 {
+	return c.memory * a
+}
+func (c *Calculator) DividefromMemory(a float64) float64 {
+	return c.memory / a
+}
+
+// main package 
+package main
+
+import (
+	"fmt"
+
+	"example.txt/calculator"
+	"example.txt/stack"
+)
+
+func main() {
+
+	//initializing stack
+	st := stack.New()
+	for i := 0; i < 10; i++ {
+		st.Push(i)
+	}
+	//fmt.Println(len(st.arr))
+	for true {
+		top, exist := st.Pop()
+		if exist == false {
+			break
+		}
+		fmt.Printf("%d ", top)
+	}
+	fmt.Println()
+	// initializing calculator
+	cal := calculator.Calculator{}
+	fmt.Printf("%f ", cal.Add(10, 90))
+	fmt.Printf("%f ", cal.Subtract(10, 90))
+	fmt.Printf("%f ", cal.Multiply(10, 90))
+	fmt.Printf("%f ", cal.Divide(10, 90))
+
+	// setting memory
+	cal.SetMemory(10)
+	fmt.Println(cal.AddtoMemory(90))
+	fmt.Println(cal.SubtractfromMemory(90))
+	fmt.Println(cal.MultiplytoMemory(90))
+	fmt.Println(cal.DividefromMemory(90))
+
+}
