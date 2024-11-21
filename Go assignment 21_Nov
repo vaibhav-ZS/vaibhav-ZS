@@ -1,0 +1,59 @@
+package main
+
+import (
+	"fmt"
+)
+
+type Customers struct {
+	name   string
+	age    int
+	salary float64
+}
+
+func SortTester(c []Customers, attribute string, dir string) []Customers {
+	newList := c
+	n := len(c)
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			switch attribute {
+			case "Name":
+				{
+					if newList[i].name > newList[j].name {
+						temp := newList[i]
+						newList[i] = newList[j]
+						newList[j] = temp
+					}
+				}
+			case "age":
+				{
+					if newList[i].age > newList[j].age {
+						temp := newList[i]
+						newList[i] = newList[j]
+						newList[j] = temp
+					}
+				}
+			case "salary":
+				{
+					if newList[i].salary > newList[j].salary {
+						temp := newList[i]
+						newList[i] = newList[j]
+						newList[j] = temp
+					}
+				}
+			}
+		}
+	}
+	if dir == "desc" {
+		for i := 0; i < n/2; i++ {
+			temp := newList[i]
+			newList[i] = newList[n-1-i]
+			newList[n-i-1] = temp
+		}
+	}
+	return newList
+}
+func main() {
+	list := []Customers{{"Name1", 45, 10000}, {"Name2", 65, 5000}, {"Name3", 32, 5000}, {"Name4", 78, 9000}}
+	list = SortTester(list, "Salary", "asc")
+	fmt.Println(list)
+}
